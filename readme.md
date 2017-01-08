@@ -1,6 +1,36 @@
 #Forum
 
-This is a repository for a forum app, built with Laravel 5.3 and Vue 2.
+CatchUp CRM Base.
+
+##Installation & Configuration
+If you would like to install this project, treat it as you would any other Laravel application:
+- Clone the repo.
+- Install dependencies: ```composer install``` and ```npm install``` (required to install ```pusher-js``` and ```laravel-echo```).
+
+If you are developing on a Windows system or you are running your VM on a Windows host system, you may need to run the npm install command with the --no-bin-links switch enabled:
+
+```npm install --no-bin-links```
+
+- Configure environment variables- ```.env``` (see below).
+- Generate application key ```php artisan key:generate```.
+- Run Laravel migrations- ```php artisan migrate```.
+
+##Further steps:
+
+Make sure you configure these environment variables:
+- ```APP_URL``` : the url of the application. This variable is used for linking to the application in emails.
+- ```APP_NAME```: the human readable name of the application. This variable is used for refering to the application via emails. It is also used in the navbar as the application branding.
+- ```MAIL_FROM_EMAIL``` and ```MAIL_FROM_NAME```: the 'from' email address and name. This is used for sending out emails.
+- ```S3_KEY```, ```S3_SECRET```, ```S3_REGION```, ```S3_BUCKET_NAME``` and ```S3_IMG_BUCKET_URL```: the conncetion to Amazon S3 variables. These values are used for the avatar uploading facility built in to the application.
+- ```PUSHER_APP_ID```, ```PUSHER_KEY``` and ```PUSHER_SECRET```: the connection configuration for the ```pusher``` broadcast driver.
+
+- Set the ```QUEUE_DRIVER``` environment variable to ```database```.
+- Set the ```BROADCAST_DRIVER``` environment variable to the broadcast driver to be used. Set this to ```pusher``` if you wish to use the pusher API with ```Laravel Echo```.
+- Set the ```APP_ENV``` environment variable to ```production``` when the app is on a live sever, to force HTTPS connections on all routes.
+- Configure your Amazon S3 bucket with a policy that will allow the application to upload avatars to it.
+- Configure the ```Laravel Echo``` instance in ```resources/assets/js/bootstrap.js```, starting line 41.
+- Run ```php artisan queue:work``` to allow jobs, queued mail and event broadcasting to function.
+
 
 ##Highlights
 - @mention functionality, alerting ```User```s by email when they are mentioned in a post. Including auto link generation, when a ```User``` uses the @mention functionality. I.e ```@ashmenhennett``` will be converted to ```[@ashmenhennett](http://example.com/user/profile/@ashmenhennett)```.
@@ -13,9 +43,6 @@ This is a repository for a forum app, built with Laravel 5.3 and Vue 2.
 - Markdown support for creating posts. *All posts are stored in database as Markdown and are converted to HTML, when needed*
 
 ##Commands
-There are a couple of commands for use with this application:
-- When the 'to-be' Administrator registers for an account, it is necessary to execute the ```alter:role``` command via command line, after they have registered, passing in the id of the ```User``` and the role (i.e. ```admin```). Eg. ```php artisan alter:role 1 admin```. This is currently the only logical way of elevating a specific user, when no other ```admin```s exist.
-- The local storage of avatars will have to be cleaned every now and then. To do so, execute the following command ```php artisan clear:avatars```. They exist in the application storage, as they are uploaded to the applications storage, before being uploaded to Amazon's S3. *They are currently not being automatically deleted from local storage after uploading to S3*.
 
 ##Functionality
 - ```User```s can register and create ```Topic```s and ```Post```s.
@@ -29,28 +56,6 @@ There are a couple of commands for use with this application:
 - Moderators are alerted via email when content is reported. Moderators can easily manage these reports in the Moderator Dashboard.
 - Other expected events are raised, check out ```App\Events``` and ```App\Listeners``` for further insight. See ```App\Providers\EventServiceProvider```'s ```$listen``` property for the association of ```Event```s and ```Listener```s.
 
-##Installation & Configuration
-If you would like to install this project, treat it as you would any other Laravel application:
-- Clone the repo.
-- Install dependencies: ```composer install``` and ```npm install``` (required to install ```pusher-js``` and ```laravel-echo```).
-- Configure environment variables- ```.env``` (see below).
-- Generate application key ```php artisan key:generate```.
-- Run Laravel migrations- ```php artisan migrate```.
-
-Make sure you configure these environment variables:
-- ```APP_URL``` : the url of the application. This variable is used for linking to the application in emails.
-- ```APP_NAME```: the human readable name of the application. This variable is used for refering to the application via emails. It is also used in the navbar as the application branding.
-- ```MAIL_FROM_EMAIL``` and ```MAIL_FROM_NAME```: the 'from' email address and name. This is used for sending out emails.
-- ```S3_KEY```, ```S3_SECRET```, ```S3_REGION```, ```S3_BUCKET_NAME``` and ```S3_IMG_BUCKET_URL```: the conncetion to Amazon S3 variables. These values are used for the avatar uploading facility built in to the application.
-- ```PUSHER_APP_ID```, ```PUSHER_KEY``` and ```PUSHER_SECRET```: the connection configuration for the ```pusher``` broadcast driver.
-
-Further steps:
-- Set the ```QUEUE_DRIVER``` environment variable to ```database```.
-- Set the ```BROADCAST_DRIVER``` environment variable to the broadcast driver to be used. Set this to ```pusher``` if you wish to use the pusher API with ```Laravel Echo```.
-- Set the ```APP_ENV``` environment variable to ```production``` when the app is on a live sever, to force HTTPS connections on all routes.
-- Configure your Amazon S3 bucket with a policy that will allow the application to upload avatars to it.
-- Configure the ```Laravel Echo``` instance in ```resources/assets/js/bootstrap.js```, starting line 41.
-- Run ```php artisan queue:work``` to allow jobs, queued mail and event broadcasting to function.
 
 ##Screenshots
 ###Admin Dashboard

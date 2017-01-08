@@ -19,17 +19,10 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index (Request $request)
+    public function index()
     {
-        $user = $request->user();
-
-        $topics = $user->topics()->orderBy('created_at', 'desc')->get();
-
-        return view('home', [
-            'topics' => $topics,
-        ]);
+        return view('home');
     }
 }

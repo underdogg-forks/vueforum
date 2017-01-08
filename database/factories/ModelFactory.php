@@ -31,3 +31,43 @@ $factory->define(App\Message::class, function (Faker\Generator $faker) {
         'content' => $faker->sentence
     ];
 });
+
+/*
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+
+    return [
+        'recipient_id' => 1,
+        'sender_id' => 11,
+        'content' => $faker->sentence
+    ];
+});
+*/
+
+/*
+$factory->define(App\Topic::class, function (Faker\Generator $faker) {
+
+    return [
+        'recipient_id' => 1,
+        'sender_id' => 11,
+        'content' => $faker->sentence
+    ];
+});
+*/
+
+/*
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+
+    return [
+        'recipient_id' => 1,
+        'sender_id' => 11,
+        'content' => $faker->sentence
+    ];
+});
+*/
+
+
+
+
+
+
+
