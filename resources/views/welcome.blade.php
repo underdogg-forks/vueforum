@@ -156,7 +156,6 @@
         <li><a id="settings_recaptcha" href="{{url("admin/settings/recaptcha")}}">{{trans("admin.recaptcha")}}</a></li>
         <li><a id="settings_mail" href="{{url("admin/settings/mail")}}">{{trans("admin.mailsettings")}}</a></li>
     </ul>
-
 </div>
 
 <!-- Begin page content -->
@@ -192,7 +191,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">Copyrighted 2015 &copy; to <a href="http://www.firecrown.io">FireCrown</a>.</p>
+        <p class="text-muted">Beautiful, nice, footertekst.</p>
     </div>
 </footer>
 
