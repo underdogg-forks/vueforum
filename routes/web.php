@@ -27,7 +27,7 @@ Route::group(['middleware' => ['log.activity']], function() {
     Route::group(['middleware' => ['auth']], function () {
 
         // general auth routing
-        Route::get('/home', 'HomeController@index')->name('home.index');
+        //Route::get('/home', 'HomeController@index')->name('home.index');
 
         Route::group(['prefix' => 'forum'], function() {
             // auth forum routes
@@ -110,7 +110,6 @@ Route::group(['middleware' => ['log.activity']], function() {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index');
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder');
 

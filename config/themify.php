@@ -18,7 +18,7 @@ return array(
     //          |_ layouts
     //          |_ post
     //          |_ static
-    'themes_path' => base_path() . '/themes',
+    'themes_path' => base_path() . '/Themes',
 
     // The directory inside your public folder where all theme
     // assets are stored. If you changed your public folder in your
